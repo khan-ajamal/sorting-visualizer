@@ -9,7 +9,7 @@ export const delay = (n) => {
 
 export const generateRandomArray = () => {
   const array = [];
-  for (let index = 0; index < 25; index++) {
+  for (let index = 0; index < 24; index++) {
     array.push(Math.ceil(Math.random() * 100));
   }
   return array;

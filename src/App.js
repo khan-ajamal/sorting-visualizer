@@ -1,91 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 
-import { BubbleSort } from "./algorithms/bubble-sort";
+import Visualizer from "./visualizer";
 
-import styles from "./App.module.css";
-import { delay, generateRandomArray } from "./utils";
+import { ReactComponent as GitHubIcon } from "./icons/github.svg";
 
 const App = () => {
-  const [array, setArray] = useState([]);
-  const [barOne, setBarOne] = useState(null);
-  const [barTwo, setBarTwo] = useState(null);
-  const [isSwapping, setIsSwapping] = useState(false);
-
-  const { comparators, done } = useSelector((state) => state.comparing);
-
-  const startBubbleSort = () => {
-    BubbleSort(array);
-  };
-
-  const changeBarColor = async (elem) => {
-    setIsSwapping(false);
-    setBarOne(elem.barOne);
-    setBarTwo(elem.barTwo);
-
-    await delay(250);
-
-    if (elem.swapping) {
-      setIsSwapping(true);
-      setArray([...elem.intermediateArray]);
-    }
-  };
-
-  // OnMount
-  useEffect(() => {
-    setArray(generateRandomArray());
-  }, []);
-
-  useEffect(() => {
-    const update = async () => {
-      if (done) {
-        for (let index = 0; index < comparators.length; index++) {
-          const element = comparators[index];
-          changeBarColor(element);
-          await delay(500);
-        }
-      }
-    };
-    update();
-  }, [done, comparators]);
-
-  const getBarColor = (index) => {
-    if (barOne === index || barTwo === index) {
-      return styles.comparing;
-    }
-    return "";
-  };
-
-  const getSwapping = (index) => {
-    if (barOne === index || barTwo === index) {
-      return isSwapping ? styles.swapping : "";
-    }
-    return "";
-  };
-
   return (
-    <div className="container bg-green-300 p-8">
-      <div>
-        <div className="bg-purple-500 flex justify-start items-end p-4 my-3.5">
-          {array.map((item, index) => (
-            <div
-              key={index}
-              className={`${styles.bar} ${getBarColor(index)} ${getSwapping(
-                index
-              )}`}
-              style={{ height: `${item + 100}px` }}
-            >
-              <span>{item}</span>
-            </div>
-          ))}
+    <div className="container mx-auto">
+      <header className="px-8 h-12 flex justify-between items-center mb-4">
+        <div className="h-full flex items-center">
+          <a href="https://khan-ajamal.github.io/sorting-visualizer">
+            <h1 className="text-lg">Sorting Visualizer</h1>
+          </a>
         </div>
-        <button
-          className="h-10 px-4 bg-red-400 flex justify-center items-center text-lg text-white rounded-md"
-          onClick={() => startBubbleSort()}
-        >
-          Start Bubble Sort
-        </button>
-      </div>
+        <div className="h-full flex items-center">
+          <a
+            href="https://github.com/khan-ajamal/sorting-visualizer"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <GitHubIcon className="h-8" />
+          </a>
+        </div>
+      </header>
+      <main>
+        <Visualizer />
+        <div className="mt-8 px-8">
+          <h2>Labels</h2>
+          <div>
+            <div className="flex justify-start items-center mb-2">
+              <div className="h-10 w-10 bg-red-500 mr-3"></div>
+              <p>Comparing elements</p>
+            </div>
+            <div className="flex justify-start items-center">
+              <div className="h-10 w-10 bg-pink-300 mr-3"></div>
+              <p>Swapping elements</p>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };

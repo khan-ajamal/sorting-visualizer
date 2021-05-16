@@ -1,0 +1,18 @@
+.bar {
+  @apply w-3 mx-px bg-gray-400 flex justify-center items-end;
+}
+
+.bar.comparing {
+  @apply bg-red-500 transition-all;
+}
+
+.bar.swapping {
+  @apply bg-pink-300 transition-all;
+}
+
+.bar.sorted {
+  @apply bg-yellow-300 transition-all;
+}
+.bar span {
+  font-size: 0.875rem;
+}

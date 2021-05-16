@@ -86,6 +86,14 @@ const Visualizer = () => {
             Start Sorting
           </button>
         </div>
+        <div className="h-80 w-96 border border-gray-300 p-3 ml-4">
+          <h3 className="mb-4">Merge Sort</h3>
+          <p>Coming Soon</p>
+        </div>
+        <div className="h-80 w-96 border border-gray-300 p-3 ml-4">
+          <h3 className="mb-4">Quick Sort</h3>
+          <p>Coming Soon</p>
+        </div>
       </div>
     </div>
   );

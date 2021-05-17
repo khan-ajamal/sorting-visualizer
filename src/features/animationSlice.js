@@ -5,6 +5,7 @@ export const comparingSlice = createSlice({
   initialState: {
     comparators: [],
     done: false,
+    sortedArraySlice: [],
   },
   reducers: {
     compare: (state, action) => {
@@ -17,6 +18,6 @@ export const comparingSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { compare, done, addSortedIndex } = comparingSlice.actions;
+export const { compare, done } = comparingSlice.actions;
 
 export default comparingSlice.reducer;

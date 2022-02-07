@@ -1,4 +1,6 @@
-export const mergeSort = (arr) => {
+import { Node } from "../utils";
+
+export const mergeSort = (arr, rootNode) => {
     if (arr.length < 2) {
         // array already sorted
         return arr;
@@ -9,8 +11,11 @@ export const mergeSort = (arr) => {
     let left = arr.slice(0, mid);
     let right = arr.slice(mid);
 
-    let sortedLeft = mergeSort(left);
-    let sortedRight = mergeSort(right);
+    rootNode.left = new Node(left);
+    rootNode.right = new Node(right);
+
+    let sortedLeft = mergeSort(left, rootNode.left);
+    let sortedRight = mergeSort(right, rootNode.right);
 
     return merge(sortedLeft, sortedRight);
 };

@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
-import Portal from "../components/portal";
 import { BubbleSort } from "../algorithms/bubble-sort";
-import MergeSortVisualizer from "../components/mergeSort";
+import { MergeSort } from "../components/mergeSort";
 import { delay, generateRandomArray, NUMBER_OF_BARS } from "../utils";
 
 import styles from "./visualizer.module.css";
-import { AnimatePresence } from "framer-motion";
 
 const Visualizer = () => {
     const [array, setArray] = useState([]);
@@ -15,8 +13,6 @@ const Visualizer = () => {
     const [sorting, setSorting] = useState(null);
     const [barOne, setBarOne] = useState(null);
     const [barTwo, setBarTwo] = useState(null);
-
-    const [viewMergeSort, setViewMergeSort] = useState(true);
 
     const [isSwapping, setIsSwapping] = useState(false);
 
@@ -124,23 +120,7 @@ const Visualizer = () => {
                     </button>
                 </div>
                 <div className="h-80 w-96 border border-gray-300 p-3 ml-4 flex justify-center items-center">
-                    <button
-                        className="h-10 px-4 rounded bg-teal-600 font-medium text-white"
-                        onClick={() => setViewMergeSort(true)}
-                    >
-                        Visualise Merge Sort
-                    </button>
-
-                    <AnimatePresence>
-                        {viewMergeSort && (
-                            <Portal
-                                onClose={() => setViewMergeSort(false)}
-                                title="Merge Sort"
-                            >
-                                <MergeSortVisualizer />
-                            </Portal>
-                        )}
-                    </AnimatePresence>
+                    <MergeSort />
                 </div>
                 <div className="h-80 w-96 border border-gray-300 p-3 ml-4">
                     <h3 className="mb-4">Quick Sort</h3>

@@ -1,16 +1,43 @@
 import { useState, useEffect } from "react";
 
 import { clone, map } from "lodash-es";
+import { AnimatePresence } from "framer-motion";
 
+import Portal from "../components/portal";
 import { mergeSort } from "../algorithms/merge-sort";
 import { BinaryTree, generateRandomArray, Node } from "../utils";
+
+export const MergeSort = () => {
+    const [viewMergeSort, setViewMergeSort] = useState(false);
+    return (
+        <>
+            <button
+                className="h-10 px-4 rounded bg-teal-600 font-medium text-white"
+                onClick={() => setViewMergeSort(true)}
+            >
+                Visualise Merge Sort
+            </button>
+
+            <AnimatePresence>
+                {viewMergeSort && (
+                    <Portal
+                        onClose={() => setViewMergeSort(false)}
+                        title="Merge Sort"
+                    >
+                        <MergeSortVisualizer />
+                    </Portal>
+                )}
+            </AnimatePresence>
+        </>
+    );
+};
 
 const MergeSortVisualizer = () => {
     const [tree, setTree] = useState(null);
     const [elements, setElements] = useState([]);
 
     useEffect(() => {
-        setElements(generateRandomArray(20));
+        setElements(generateRandomArray());
     }, []);
 
     const sort = () => {
@@ -96,5 +123,3 @@ const RenderTree = ({ data, left, right }) => {
         </div>
     );
 };
-
-export default MergeSortVisualizer;

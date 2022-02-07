@@ -1,20 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const comparingSlice = createSlice({
-  name: "comparing",
-  initialState: {
-    comparators: [],
-    done: false,
-    sortedArraySlice: [],
-  },
-  reducers: {
-    compare: (state, action) => {
-      state.comparators.push(action.payload);
+    name: "comparing",
+    initialState: {
+        comparators: [],
+        done: false,
+        sortedArraySlice: [],
     },
-    done: (state, action) => {
-      state.done = true;
+    reducers: {
+        compare: (state, action) => {
+            state.comparators.push(action.payload);
+        },
+        done: (state, action) => {
+            state.done = true;
+        },
     },
-  },
 });
 
 // Action creators are generated for each case reducer function

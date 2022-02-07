@@ -46,7 +46,7 @@ const MergeSortVisualizer = () => {
 
 const Block = ({ elem }) => {
     return (
-        <div className="w-10 h-10 bg-gray-200 rounded border border-solid border-gray-400 border-collapse flex justify-center items-center">
+        <div className="w-8 h-8 bg-gray-200 rounded border border-solid border-gray-400 border-collapse flex justify-center items-center">
             <span className="font-medium">{elem}</span>
         </div>
     );

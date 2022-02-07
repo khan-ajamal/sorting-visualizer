@@ -10,7 +10,7 @@ const MergeSortVisualizer = () => {
     const [elements, setElements] = useState([]);
 
     useEffect(() => {
-        setElements(generateRandomArray());
+        setElements(generateRandomArray(20));
     }, []);
 
     const sort = () => {
@@ -54,14 +54,22 @@ const Block = ({ elem }) => {
 
 const RenderTree = ({ data, left, right }) => {
     return (
-        <div className="w-full mt-4">
-            <div className="w-full flex justify-center">
-                {map(data, (elem, idx) => (
-                    <Block key={idx} elem={elem} />
-                ))}
+        <div className="w-full">
+            <div className="w-full">
+                <div className="flex justify-center">
+                    {map(data, (elem, idx) => (
+                        <Block key={idx} elem={elem} />
+                    ))}
+                </div>
             </div>
             <div className="w-full flex justify-between">
                 <div className="w-1/2 left-block">
+                    {left && (
+                        <div className="w-full h-10 flex justify-end">
+                            <div className="h-1 w-10 rounded bg-slate-600 origin-top-right transform -rotate-45"></div>
+                        </div>
+                    )}
+
                     {left && (
                         <RenderTree
                             data={left.data}
@@ -71,6 +79,11 @@ const RenderTree = ({ data, left, right }) => {
                     )}
                 </div>
                 <div className="w-1/2 right-block">
+                    {right && (
+                        <div className="w-full h-10 flex justify-start">
+                            <div className="h-1 w-10 rounded bg-slate-600 origin-top-left transform rotate-45"></div>
+                        </div>
+                    )}
                     {right && (
                         <RenderTree
                             data={right.data}

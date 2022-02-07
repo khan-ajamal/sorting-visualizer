@@ -1,3 +1,4 @@
+import { clone } from "lodash-es";
 import { Node } from "../utils";
 
 export const mergeSort = (arr, rootNode) => {
@@ -11,13 +12,15 @@ export const mergeSort = (arr, rootNode) => {
     let left = arr.slice(0, mid);
     let right = arr.slice(mid);
 
-    rootNode.left = new Node(left);
-    rootNode.right = new Node(right);
+    rootNode.left = new Node(clone(left));
+    rootNode.right = new Node(clone(right));
 
     let sortedLeft = mergeSort(left, rootNode.left);
     let sortedRight = mergeSort(right, rootNode.right);
 
-    return merge(sortedLeft, sortedRight);
+    let sortedArr = merge(sortedLeft, sortedRight);
+
+    return sortedArr;
 };
 
 const merge = (left, right) => {

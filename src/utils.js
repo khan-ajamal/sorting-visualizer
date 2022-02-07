@@ -9,9 +9,9 @@ export const delay = (n) => {
     });
 };
 
-export const generateRandomArray = () => {
+export const generateRandomArray = (numberOfElements = NUMBER_OF_BARS) => {
     const array = [];
-    for (let index = 0; index < NUMBER_OF_BARS; index++) {
+    for (let index = 0; index < numberOfElements; index++) {
         array.push(Math.ceil(Math.random() * 100));
     }
     return array;

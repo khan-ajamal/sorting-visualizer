@@ -1,10 +1,22 @@
 import { createPortal } from "react-dom";
 
+import { motion } from "framer-motion";
+
 const container = document.getElementById("portal");
 
 const PortalWrapper = ({ children, onClose, title }) => {
+    const variants = {
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: 100 },
+    };
     return (
-        <div className="fixed inset-0 w-screen h-screen bg-white">
+        <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={variants}
+            exit={{ opacity: 0, y: 100 }}
+            className="fixed inset-0 w-screen h-screen bg-white"
+        >
             <div className="container p-4">
                 <div className="w-full flex items-center justify-between">
                     <h1 className="text-3xl font-semibold">{title}</h1>
@@ -18,7 +30,7 @@ const PortalWrapper = ({ children, onClose, title }) => {
                 </div>
                 <div className="mt-16 h-screen overflow-y-auto">{children}</div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

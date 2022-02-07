@@ -7,6 +7,7 @@ import MergeSortVisualizer from "../components/mergeSort";
 import { delay, generateRandomArray, NUMBER_OF_BARS } from "../utils";
 
 import styles from "./visualizer.module.css";
+import { AnimatePresence } from "framer-motion";
 
 const Visualizer = () => {
     const [array, setArray] = useState([]);
@@ -122,19 +123,24 @@ const Visualizer = () => {
                         Start Sorting
                     </button>
                 </div>
-                <div className="h-80 w-96 border border-gray-300 p-3 ml-4">
-                    <h3 className="mb-4">Merge Sort</h3>
-                    <button onClick={() => setViewMergeSort(true)}>
-                        View Merge Sort
+                <div className="h-80 w-96 border border-gray-300 p-3 ml-4 flex justify-center items-center">
+                    <button
+                        className="h-10 px-4 rounded bg-teal-600 font-medium text-white"
+                        onClick={() => setViewMergeSort(true)}
+                    >
+                        Visualise Merge Sort
                     </button>
-                    {viewMergeSort && (
-                        <Portal
-                            onClose={() => setViewMergeSort(false)}
-                            title="Merge Sort"
-                        >
-                            <MergeSortVisualizer />
-                        </Portal>
-                    )}
+
+                    <AnimatePresence>
+                        {viewMergeSort && (
+                            <Portal
+                                onClose={() => setViewMergeSort(false)}
+                                title="Merge Sort"
+                            >
+                                <MergeSortVisualizer />
+                            </Portal>
+                        )}
+                    </AnimatePresence>
                 </div>
                 <div className="h-80 w-96 border border-gray-300 p-3 ml-4">
                     <h3 className="mb-4">Quick Sort</h3>

@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import { clone, map } from "lodash-es";
 import { AnimatePresence } from "framer-motion";
 
 import Portal from "../components/portal";
 import { mergeSort } from "../algorithms/merge-sort";
-import { BinaryTree, generateRandomArray, Node } from "../utils";
+import { delay, generateRandomArray, Node } from "../utils";
 
 export const MergeSort = () => {
-    const [viewMergeSort, setViewMergeSort] = useState(false);
+    const [viewMergeSort, setViewMergeSort] = useState(true);
     return (
         <>
             <button
@@ -36,19 +37,31 @@ const MergeSortVisualizer = () => {
     const [tree, setTree] = useState(null);
     const [elements, setElements] = useState([]);
 
+    const { progress } = useSelector((state) => state.tree);
+
     useEffect(() => {
         setElements(generateRandomArray());
     }, []);
 
     const sort = () => {
         let elem = clone(elements);
-        const tree = new BinaryTree();
         const rootNode = new Node(elem);
         elem = mergeSort(elem, rootNode);
-        tree.addNode(rootNode);
-        setTree(tree);
-        setElements(clone(elem));
     };
+
+    useEffect(() => {
+        const render = async () => {
+            if (progress) {
+                for (let index = 0; index < progress.length; index++) {
+                    const element = progress[index];
+                    setTree(element);
+                    await delay(500);
+                }
+            }
+        };
+        render();
+    }, [progress]);
+
     return (
         <div className="w-full">
             <div className="mb-4 w-full flex justify-center">
@@ -64,9 +77,7 @@ const MergeSortVisualizer = () => {
                     <Block key={idx} elem={elem} />
                 ))}
             </div>
-            {tree && (
-                <RenderTree left={tree.root.left} right={tree.root.right} />
-            )}
+            {tree && <RenderTree left={tree.left} right={tree.right} />}
         </div>
     );
 };

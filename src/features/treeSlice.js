@@ -3,16 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 export const treeSlice = createSlice({
     name: "tree",
     initialState: {
-        steps: [],
+        progress: [],
     },
     reducers: {
-        addStep: (state, action) => {
-            state.steps.push(action.payload);
+        addProgress: (state, action) => {
+            state.progress.push(action.payload);
         },
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { addStep } = treeSlice.actions;
+export const { addProgress } = treeSlice.actions;
 
 export default treeSlice.reducer;

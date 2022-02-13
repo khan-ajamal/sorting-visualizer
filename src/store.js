@@ -8,4 +8,8 @@ export default configureStore({
         comparing: comparingReducer,
         tree: treeReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
 });

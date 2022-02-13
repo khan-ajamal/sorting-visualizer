@@ -1,7 +1,11 @@
-import { clone } from "lodash-es";
+import { cloneDeep } from "lodash-es";
+
+import store from "../store";
 import { Node } from "../utils";
+import { addProgress } from "../features/treeSlice";
 
 export const mergeSort = (arr, rootNode) => {
+    store.dispatch(addProgress(cloneDeep(rootNode)));
     if (arr.length < 2) {
         // array already sorted
         return arr;
@@ -12,8 +16,10 @@ export const mergeSort = (arr, rootNode) => {
     let left = arr.slice(0, mid);
     let right = arr.slice(mid);
 
-    rootNode.left = new Node(clone(left));
-    rootNode.right = new Node(clone(right));
+    rootNode.left = new Node(cloneDeep(left));
+    rootNode.right = new Node(cloneDeep(right));
+
+    store.dispatch(addProgress(cloneDeep(rootNode)));
 
     let sortedLeft = mergeSort(left, rootNode.left);
     let sortedRight = mergeSort(right, rootNode.right);

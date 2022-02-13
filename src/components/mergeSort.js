@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import { clone, map } from "lodash-es";
 import { AnimatePresence } from "framer-motion";
 
-import Portal from "../components/portal";
-import { mergeSort } from "../algorithms/merge-sort";
-import { delay, generateRandomArray, Node } from "../utils";
+import Portal from "components/portal";
+import { mergeSort } from "algorithms/merge-sort";
+import { delay, generateRandomArray, Node } from "utils";
 
 export const MergeSort = () => {
     const [viewMergeSort, setViewMergeSort] = useState(true);

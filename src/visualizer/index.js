@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
-import { BubbleSort } from "../algorithms/bubble-sort";
-import { MergeSort } from "../components/mergeSort";
-import { delay, generateRandomArray, NUMBER_OF_BARS } from "../utils";
+import { BubbleSort } from "algorithms/bubble-sort";
+import { MergeSort } from "components/mergeSort";
+import { delay, generateRandomArray, NUMBER_OF_BARS } from "utils";
 
-import styles from "./visualizer.module.css";
+import styles from "visualizer/visualizer.module.css";
 
 const Visualizer = () => {
     const [array, setArray] = useState([]);

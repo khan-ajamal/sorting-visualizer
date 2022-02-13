@@ -1,8 +1,8 @@
 import { cloneDeep } from "lodash-es";
 
-import store from "../store";
-import { Node } from "../utils";
-import { addProgress } from "../features/treeSlice";
+import store from "store";
+import { Node } from "utils";
+import { addProgress } from "features/treeSlice";
 
 export const mergeSort = (arr, rootNode) => {
     store.dispatch(addProgress(cloneDeep(rootNode)));

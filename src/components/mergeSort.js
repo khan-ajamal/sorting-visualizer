@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { clone, cloneDeep, map } from "lodash-es";
+import { cloneDeep, map } from "lodash-es";
 import { AnimatePresence } from "framer-motion";
 
 import Portal from "components/portal";
 import { mergeSort } from "algorithms/merge-sort";
 import { delay, generateRandomArray, Node } from "utils";
+import { addProgress, resetProgress } from "features/treeSlice";
 
 export const MergeSort = () => {
     const [viewMergeSort, setViewMergeSort] = useState(false);
     return (
         <>
             <button
+                id="mergeSort"
                 className="h-10 px-4 rounded bg-teal-600 font-medium text-white"
                 onClick={() => setViewMergeSort(true)}
             >
@@ -35,18 +37,32 @@ export const MergeSort = () => {
 
 const MergeSortVisualizer = () => {
     const [tree, setTree] = useState(null);
-    const [elements, setElements] = useState([]);
+    const [isSorting, setIsSorting] = useState(false);
 
     const { progress } = useSelector((state) => state.tree);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        setElements(generateRandomArray());
+        const elem = generateRandomArray(15);
+        const node = new Node(cloneDeep(elem));
+        setTree(cloneDeep(node));
     }, []);
 
     const sort = () => {
-        let elem = clone(elements);
-        const rootNode = new Node(elem);
-        mergeSort(elem, rootNode);
+        setIsSorting(true);
+        const data = mergeSort(cloneDeep(tree.data), tree);
+        let sortedNode = new Node(cloneDeep(data));
+        sortedNode.isFinal = true;
+        sortedNode.isSorted = true;
+        dispatch(addProgress(cloneDeep(sortedNode)));
+    };
+
+    const reset = () => {
+        setIsSorting(false);
+        dispatch(resetProgress());
+        const elem = generateRandomArray(15);
+        const node = new Node(cloneDeep(elem));
+        setTree(cloneDeep(node));
     };
 
     useEffect(() => {
@@ -57,6 +73,7 @@ const MergeSortVisualizer = () => {
                     setTree(cloneDeep(element));
                     await delay(500);
                 }
+                setIsSorting(false);
             }
         };
         render();
@@ -66,37 +83,53 @@ const MergeSortVisualizer = () => {
         <div className="w-full">
             <div className="mb-4 w-full flex justify-center">
                 <button
+                    disabled={isSorting}
                     onClick={sort}
-                    className="h-10 w-40 font-medium px-2 bg-green-600 text-white rounded"
+                    className="h-10 w-40 font-medium px-2 bg-green-600 text-white rounded disabled:bg-green-300"
                 >
-                    Start
+                    {isSorting ? "Sorting" : "Start"}
+                </button>
+                <button
+                    disabled={isSorting}
+                    onClick={reset}
+                    className="h-10 w-40 font-medium px-2 bg-yellow-400 text-white rounded disabled:bg-yellow-200 ml-3"
+                >
+                    Reset
                 </button>
             </div>
-            <div className="w-full flex justify-center">
-                {map(elements, (elem, idx) => (
-                    <Block key={idx} elem={elem} />
-                ))}
-            </div>
-            {tree && <RenderTree left={tree.left} right={tree.right} />}
+            {tree && (
+                <RenderTree
+                    data={tree.data}
+                    left={tree.left}
+                    right={tree.right}
+                    isSorted={tree.isSorted}
+                />
+            )}
         </div>
     );
 };
 
-const Block = ({ elem }) => {
+const Block = ({ elem, isSorted }) => {
     return (
-        <div className="w-8 h-8 bg-gray-200 rounded border border-solid border-gray-400 border-collapse flex justify-center items-center">
-            <span className="font-medium">{elem}</span>
+        <div
+            className={`w-8 h-8 rounded border border-solid border-gray-400 border-collapse flex justify-center items-center ${
+                isSorted ? "bg-green-500" : "bg-gray-200"
+            }`}
+        >
+            <span className={`font-medium ${isSorted ? "text-white" : ""}`}>
+                {elem}
+            </span>
         </div>
     );
 };
 
-const RenderTree = ({ data, left, right }) => {
+const RenderTree = ({ data, left, right, isSorted }) => {
     return (
         <div className="w-full">
             <div className="w-full">
                 <div className="flex justify-center">
                     {map(data, (elem, idx) => (
-                        <Block key={idx} elem={elem} />
+                        <Block key={idx} elem={elem} isSorted={isSorted} />
                     ))}
                 </div>
             </div>
@@ -113,6 +146,7 @@ const RenderTree = ({ data, left, right }) => {
                             data={left.data}
                             left={left.left}
                             right={left.right}
+                            isSorted={left.isSorted}
                         />
                     )}
                 </div>
@@ -127,6 +161,7 @@ const RenderTree = ({ data, left, right }) => {
                             data={right.data}
                             left={right.left}
                             right={right.right}
+                            isSorted={right.isSorted}
                         />
                     )}
                 </div>

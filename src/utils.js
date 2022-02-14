@@ -25,5 +25,7 @@ export class Node {
         this.left = null;
         this.right = null;
         this.idx = uniqueId("root_");
+        this.isSorted = false;
+        this.isFinal = false;
     }
 }

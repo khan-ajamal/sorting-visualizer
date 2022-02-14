@@ -22,16 +22,19 @@ export const mergeSort = (arr, rootNode) => {
     store.dispatch(addProgress(cloneDeep(rootNode)));
 
     let sortedLeft = mergeSort(left, rootNode.left);
-    let sortedRight = mergeSort(right, rootNode.right);
-
     rootNode.left = new Node(cloneDeep(sortedLeft));
-    rootNode.right = new Node(cloneDeep(sortedRight));
+    rootNode.left.isSorted = true;
+    store.dispatch(addProgress(cloneDeep(rootNode)));
 
+    let sortedRight = mergeSort(right, rootNode.right);
+    rootNode.right = new Node(cloneDeep(sortedRight));
+    rootNode.right.isSorted = true;
     store.dispatch(addProgress(cloneDeep(rootNode)));
 
     let sortedArr = merge(sortedLeft, sortedRight);
 
-    rootNode.data = cloneDeep(sortedArr);
+    rootNode = new Node(cloneDeep(sortedArr));
+    rootNode.isSorted = true;
 
     store.dispatch(addProgress(cloneDeep(rootNode)));
 

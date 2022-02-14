@@ -29,19 +29,26 @@ export const treeSlice = createSlice({
     reducers: {
         addProgress: (state, action) => {
             let payload = action.payload;
-            let lastNodeArr = state.progress.slice(-1);
-            if (lastNodeArr.length) {
-                let lastNode = cloneDeep(lastNodeArr[0]);
-                state.progress.push(findNodeByIdx(payload, lastNode));
-            } else {
-                // first node, push directly
+            if (payload.isFinal) {
                 state.progress.push(payload);
+            } else {
+                let lastNodeArr = state.progress.slice(-1);
+                if (lastNodeArr.length) {
+                    let lastNode = cloneDeep(lastNodeArr[0]);
+                    state.progress.push(findNodeByIdx(payload, lastNode));
+                } else {
+                    // first node, push directly
+                    state.progress.push(payload);
+                }
             }
+        },
+        resetProgress: (state) => {
+            state.progress = [];
         },
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { addProgress } = treeSlice.actions;
+export const { addProgress, resetProgress } = treeSlice.actions;
 
 export default treeSlice.reducer;

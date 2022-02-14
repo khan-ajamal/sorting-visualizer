@@ -12,6 +12,7 @@ export const mergeSort = (arr, rootNode) => {
     }
 
     let mid = Math.floor(arr.length / 2);
+    rootNode.mid = mid;
 
     let left = arr.slice(0, mid);
     let right = arr.slice(mid);

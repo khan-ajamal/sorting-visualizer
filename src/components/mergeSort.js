@@ -103,33 +103,56 @@ const MergeSortVisualizer = () => {
                     left={tree.left}
                     right={tree.right}
                     isSorted={tree.isSorted}
+                    mid={tree.mid}
                 />
             )}
+            <div className="mt-10">
+                <h1 className="text-xl font-medium">Color Code</h1>
+                <div>
+                    <div className="flex justify-start items-center space-x-2">
+                        <div className="h-4 w-4 bg-red-500 rounded"></div>
+                        <div>Middle Element</div>
+                    </div>
+                    <div className="flex justify-start items-center space-x-2">
+                        <div className="h-4 w-4 bg-green-500 rounded"></div>
+                        <div>Sorted Element</div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
 
-const Block = ({ elem, isSorted }) => {
+const Block = ({ elem, isSorted, isMid }) => {
     return (
         <div
             className={`w-8 h-8 rounded border border-solid border-gray-400 border-collapse flex justify-center items-center ${
-                isSorted ? "bg-green-500" : "bg-gray-200"
+                isMid ? "bg-red-500" : isSorted ? "bg-green-500" : "bg-gray-200"
             }`}
         >
-            <span className={`font-medium ${isSorted ? "text-white" : ""}`}>
+            <span
+                className={`font-medium ${
+                    isSorted || isMid ? "text-white" : ""
+                }`}
+            >
                 {elem}
             </span>
         </div>
     );
 };
 
-const RenderTree = ({ data, left, right, isSorted }) => {
+const RenderTree = ({ data, left, right, isSorted, mid }) => {
     return (
         <div className="w-full">
             <div className="w-full">
                 <div className="flex justify-center">
                     {map(data, (elem, idx) => (
-                        <Block key={idx} elem={elem} isSorted={isSorted} />
+                        <Block
+                            key={idx}
+                            isMid={idx === mid}
+                            elem={elem}
+                            isSorted={isSorted}
+                        />
                     ))}
                 </div>
             </div>
@@ -147,6 +170,7 @@ const RenderTree = ({ data, left, right, isSorted }) => {
                             left={left.left}
                             right={left.right}
                             isSorted={left.isSorted}
+                            mid={left.mid}
                         />
                     )}
                 </div>
@@ -162,6 +186,7 @@ const RenderTree = ({ data, left, right, isSorted }) => {
                             left={right.left}
                             right={right.right}
                             isSorted={right.isSorted}
+                            mid={right.mid}
                         />
                     )}
                 </div>

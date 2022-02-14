@@ -17,6 +17,7 @@ const findNodeByIdx = (payload, node) => {
     if (node.idx === payload.idx) {
         node.left = cloneDeep(payload.left);
         node.right = cloneDeep(payload.right);
+        node.mid = payload.mid;
     }
     return node;
 };

@@ -5,9 +5,9 @@ import { Node } from "utils";
 import { addProgress } from "features/treeSlice";
 
 export const mergeSort = (arr, rootNode) => {
-    store.dispatch(addProgress(cloneDeep(rootNode)));
     if (arr.length < 2) {
         // array already sorted
+        store.dispatch(addProgress(cloneDeep(rootNode)));
         return arr;
     }
 
@@ -24,7 +24,16 @@ export const mergeSort = (arr, rootNode) => {
     let sortedLeft = mergeSort(left, rootNode.left);
     let sortedRight = mergeSort(right, rootNode.right);
 
+    rootNode.left = new Node(cloneDeep(sortedLeft));
+    rootNode.right = new Node(cloneDeep(sortedRight));
+
+    store.dispatch(addProgress(cloneDeep(rootNode)));
+
     let sortedArr = merge(sortedLeft, sortedRight);
+
+    rootNode.data = cloneDeep(sortedArr);
+
+    store.dispatch(addProgress(cloneDeep(rootNode)));
 
     return sortedArr;
 };

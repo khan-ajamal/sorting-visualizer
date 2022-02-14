@@ -1,3 +1,5 @@
+import { uniqueId } from "lodash-es";
+
 export const NUMBER_OF_BARS = 25;
 
 export const delay = (n) => {
@@ -22,15 +24,6 @@ export class Node {
         this.data = data;
         this.left = null;
         this.right = null;
-    }
-}
-
-export class BinaryTree {
-    constructor() {
-        this.root = null;
-    }
-
-    addNode(node) {
-        this.root = node;
+        this.idx = uniqueId("root_");
     }
 }

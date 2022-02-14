@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { clone, map } from "lodash-es";
+import { clone, cloneDeep, map } from "lodash-es";
 import { AnimatePresence } from "framer-motion";
 
 import Portal from "components/portal";
@@ -9,7 +9,7 @@ import { mergeSort } from "algorithms/merge-sort";
 import { delay, generateRandomArray, Node } from "utils";
 
 export const MergeSort = () => {
-    const [viewMergeSort, setViewMergeSort] = useState(true);
+    const [viewMergeSort, setViewMergeSort] = useState(false);
     return (
         <>
             <button
@@ -46,7 +46,7 @@ const MergeSortVisualizer = () => {
     const sort = () => {
         let elem = clone(elements);
         const rootNode = new Node(elem);
-        elem = mergeSort(elem, rootNode);
+        mergeSort(elem, rootNode);
     };
 
     useEffect(() => {
@@ -54,7 +54,7 @@ const MergeSortVisualizer = () => {
             if (progress) {
                 for (let index = 0; index < progress.length; index++) {
                     const element = progress[index];
-                    setTree(element);
+                    setTree(cloneDeep(element));
                     await delay(500);
                 }
             }

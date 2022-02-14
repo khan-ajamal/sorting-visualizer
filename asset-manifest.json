@@ -1,21 +1,14 @@
 {
   "files": {
-    "main.css": "/sorting-visualizer/static/css/main.22ce40a3.chunk.css",
-    "main.js": "/sorting-visualizer/static/js/main.90189a65.chunk.js",
-    "main.js.map": "/sorting-visualizer/static/js/main.90189a65.chunk.js.map",
-    "runtime-main.js": "/sorting-visualizer/static/js/runtime-main.91d58af1.js",
-    "runtime-main.js.map": "/sorting-visualizer/static/js/runtime-main.91d58af1.js.map",
-    "static/js/2.98694671.chunk.js": "/sorting-visualizer/static/js/2.98694671.chunk.js",
-    "static/js/2.98694671.chunk.js.map": "/sorting-visualizer/static/js/2.98694671.chunk.js.map",
+    "main.css": "/sorting-visualizer/static/css/main.da1ee9eb.css",
+    "main.js": "/sorting-visualizer/static/js/main.50dce32d.js",
     "index.html": "/sorting-visualizer/index.html",
-    "static/css/main.22ce40a3.chunk.css.map": "/sorting-visualizer/static/css/main.22ce40a3.chunk.css.map",
-    "static/js/2.98694671.chunk.js.LICENSE.txt": "/sorting-visualizer/static/js/2.98694671.chunk.js.LICENSE.txt",
-    "static/media/github.dd3e761d.svg": "/sorting-visualizer/static/media/github.dd3e761d.svg"
+    "static/media/github.svg": "/sorting-visualizer/static/media/github.dd3e761d5b822e59c5fe8210cde05554.svg",
+    "main.da1ee9eb.css.map": "/sorting-visualizer/static/css/main.da1ee9eb.css.map",
+    "main.50dce32d.js.map": "/sorting-visualizer/static/js/main.50dce32d.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.91d58af1.js",
-    "static/js/2.98694671.chunk.js",
-    "static/css/main.22ce40a3.chunk.css",
-    "static/js/main.90189a65.chunk.js"
+    "static/css/main.da1ee9eb.css",
+    "static/js/main.50dce32d.js"
   ]
 }

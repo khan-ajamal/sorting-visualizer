@@ -46,7 +46,12 @@ const MergeSortVisualizer = () => {
         const elem = generateRandomArray(15);
         const node = new Node(cloneDeep(elem));
         setTree(cloneDeep(node));
-    }, []);
+        return () => {
+            setIsSorting(false);
+            dispatch(resetProgress());
+            setTree(null);
+        };
+    }, [dispatch]);
 
     const sort = () => {
         setIsSorting(true);

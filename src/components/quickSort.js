@@ -76,7 +76,7 @@ const QuickSortVisualizer = () => {
                 for (let index = 0; index < progress.length; index++) {
                     const element = progress[index];
                     setTree(cloneDeep(element));
-                    await delay(1000);
+                    await delay(500);
                 }
                 setIsSorting(false);
             }

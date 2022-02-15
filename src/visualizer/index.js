@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
-import { BubbleSort } from "algorithms/bubble-sort";
+import { QuickSort } from "components/quickSort";
 import { MergeSort } from "components/mergeSort";
+import { BubbleSort } from "algorithms/bubble-sort";
 import { delay, generateRandomArray, NUMBER_OF_BARS } from "utils";
 
 import styles from "visualizer/visualizer.module.css";
@@ -122,9 +123,8 @@ const Visualizer = () => {
                 <div className="h-80 w-96 border border-gray-300 p-3 ml-4 flex justify-center items-center">
                     <MergeSort />
                 </div>
-                <div className="h-80 w-96 border border-gray-300 p-3 ml-4">
-                    <h3 className="mb-4">Quick Sort</h3>
-                    <p>Coming Soon</p>
+                <div className="h-80 w-96 border border-gray-300 p-3 ml-4 flex justify-center items-center">
+                    <QuickSort />
                 </div>
             </div>
         </div>

@@ -6,7 +6,6 @@ export const quickSort = (arr, start, end) => {
      */
     if (start < end) {
         let pIndex = partition(arr, start, end);
-        console.log({ pIndex, start, end, arr });
         quickSort(arr, start, pIndex - 1);
         quickSort(arr, pIndex + 1, end);
     }

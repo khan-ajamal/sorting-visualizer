@@ -48,6 +48,7 @@ const partition = (arr, start, end) => {
         node.pIndex = pIndex;
         store.dispatch(addProgress(cloneDeep(node)));
     }
+    node.currentIndex = end;
     node.swapping = [end, pIndex];
     store.dispatch(addProgress(cloneDeep(node)));
     swap(arr, end, pIndex);

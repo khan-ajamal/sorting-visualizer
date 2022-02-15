@@ -28,5 +28,9 @@ export class Node {
         this.isSorted = false;
         this.isFinal = false;
         this.mid = null;
+        this.pivot = null;
+        this.pIndex = null;
+        this.swapping = [];
+        this.currentIndex = null;
     }
 }

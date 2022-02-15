@@ -2,6 +2,7 @@ import React from "react";
 
 import Visualizer from "visualizer";
 
+import { ReactComponent as HomeIcon } from "icons/home.svg";
 import { ReactComponent as GitHubIcon } from "icons/github.svg";
 
 const App = () => {
@@ -13,7 +14,14 @@ const App = () => {
                         <h1 className="text-lg">Sorting Visualizer</h1>
                     </a>
                 </div>
-                <div className="h-full flex items-center">
+                <div className="h-full flex items-center space-x-4">
+                    <a
+                        href="https://ajamalkhan.com/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <HomeIcon className="h-8" />
+                    </a>
                     <a
                         href="https://github.com/khan-ajamal/sorting-visualizer"
                         target="_blank"

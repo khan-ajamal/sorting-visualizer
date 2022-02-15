@@ -90,14 +90,14 @@ const MergeSortVisualizer = () => {
                 <button
                     disabled={isSorting}
                     onClick={sort}
-                    className="h-10 w-40 font-medium px-2 bg-green-600 text-white rounded disabled:bg-green-300"
+                    className="h-10 w-40 shadow font-medium px-2 bg-green-600 text-white rounded disabled:bg-green-300"
                 >
                     {isSorting ? "Sorting" : "Start"}
                 </button>
                 <button
                     disabled={isSorting}
                     onClick={reset}
-                    className="h-10 w-40 font-medium px-2 bg-yellow-400 text-white rounded disabled:bg-yellow-200 ml-3"
+                    className="h-10 w-40 shadow font-medium px-2 bg-yellow-400 text-white rounded disabled:bg-yellow-200 ml-3"
                 >
                     Reset
                 </button>

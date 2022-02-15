@@ -33,23 +33,6 @@ const App = () => {
             </header>
             <main>
                 <Visualizer />
-                <div className="mt-8 px-8">
-                    <h2>Labels</h2>
-                    <div>
-                        <div className="flex justify-start items-center">
-                            <div className="h-10 w-10 bg-red-500 mr-3"></div>
-                            <p>Comparing elements</p>
-                        </div>
-                        <div className="flex justify-start items-center mt-2">
-                            <div className="h-10 w-10 bg-pink-300 mr-3"></div>
-                            <p>Swapping elements</p>
-                        </div>
-                        <div className="flex justify-start items-center mt-2">
-                            <div className="h-10 w-10 bg-yellow-300 mr-3"></div>
-                            <p>Sorted elements</p>
-                        </div>
-                    </div>
-                </div>
             </main>
         </div>
     );

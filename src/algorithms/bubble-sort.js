@@ -1,7 +1,7 @@
 import store from "store";
 import { compare, done } from "features/animationSlice";
 
-export const BubbleSort = (array) => {
+export const bubbleSort = (array) => {
     let newArray = [...array];
     for (let i = 0; i < newArray.length; i++) {
         for (let j = 0; j < newArray.length - i - 1; j++) {

@@ -11,13 +11,18 @@ export const comparingSlice = createSlice({
         compare: (state, action) => {
             state.comparators.push(action.payload);
         },
-        done: (state, action) => {
+        done: (state) => {
             state.done = true;
+        },
+        resetSlice: (state) => {
+            state.comparators = [];
+            state.done = false;
+            state.sortedArraySlice = [];
         },
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { compare, done } = comparingSlice.actions;
+export const { compare, done, resetSlice } = comparingSlice.actions;
 
 export default comparingSlice.reducer;

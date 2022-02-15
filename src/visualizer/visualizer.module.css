@@ -1,5 +1,5 @@
 .bar {
-    @apply w-3 mx-px bg-gray-400 flex justify-center items-end;
+    @apply w-6 mx-px bg-gray-400 flex justify-center items-end rounded-t relative;
 }
 
 .bar.comparing {
@@ -7,12 +7,17 @@
 }
 
 .bar.swapping {
-    @apply bg-pink-300 transition-all;
+    @apply bg-yellow-500 transition-all;
 }
 
 .bar.sorted {
-    @apply bg-yellow-300 transition-all;
+    @apply bg-green-500 transition-all;
 }
 .bar span {
     font-size: 0.875rem;
+}
+.barLabel {
+    position: absolute;
+    top: -20px;
+    font-size: 0.5rem;
 }

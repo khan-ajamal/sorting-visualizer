@@ -15,7 +15,7 @@ const PortalWrapper = ({ children, onClose, title }) => {
             animate="visible"
             variants={variants}
             exit={{ opacity: 0, y: 100 }}
-            className="fixed inset-0 w-screen h-screen bg-white"
+            className="fixed inset-0 w-screen h-screen bg-white overflow-y-auto"
         >
             <div className="container p-4">
                 <div className="w-full flex items-center justify-between">
@@ -28,7 +28,7 @@ const PortalWrapper = ({ children, onClose, title }) => {
                         <span className="absolute rounded h-0.5 w-8 bg-gray-900 transform -rotate-45"></span>
                     </div>
                 </div>
-                <div className="mt-16 h-screen overflow-y-auto">{children}</div>
+                <div className="mt-16">{children}</div>
             </div>
         </motion.div>
     );

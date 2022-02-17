@@ -25,3 +25,24 @@ export const bubbleSort = (array) => {
     store.dispatch(done());
     return newArray;
 };
+
+export const codeBlock = {
+    python: `def bubble_sort(arr):
+    for i in range(len(arr)):
+        for j in range(len(arr) - i - 1):
+            if arr[j] > arr[j+1]:
+            temp = arr[j]
+            arr[i] = arr[j+1]
+            arr[j+1] = temp`,
+    javascript: `const bubbleSort = (arr) => {
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    let temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }`,
+};

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { CodeBlock, solarizedDark } from "react-code-blocks";
 
-import { codeBlock as bubble } from "algorithms/bubble-sort";
 import { codeBlock as merge } from "algorithms/merge-sort";
+import { codeBlock as quick } from "algorithms/quick-sort";
+import { codeBlock as bubble } from "algorithms/bubble-sort";
 
 const SampleCode = ({ algorithm }) => {
     const [language, setLanguage] = useState("python");
@@ -11,6 +12,8 @@ const SampleCode = ({ algorithm }) => {
         code = bubble;
     } else if (algorithm === "merge") {
         code = merge;
+    } else if (algorithm === "quick") {
+        code = quick;
     }
     const onLanguageChange = (e) => {
         setLanguage(e.target.value);
@@ -28,9 +31,9 @@ const SampleCode = ({ algorithm }) => {
                         <option value="python">Python</option>
                         <option value="javascript">JavaScript</option>
                     </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg
-                            class="fill-current h-4 w-4"
+                            className="fill-current h-4 w-4"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 20 20"
                         >

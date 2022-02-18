@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 
 import Portal from "components/portal";
+import SampleCode from "components/codeBlocks";
 import { quickSort } from "algorithms/quick-sort";
 import { generateRandomArray, Node, delay } from "utils";
 import { addProgress, resetProgress } from "features/quickSort";
@@ -37,6 +38,7 @@ export const QuickSort = () => {
 
 const QuickSortVisualizer = () => {
     const [tree, setTree] = useState(null);
+    const [speed, setSpeed] = useState(250);
     const [isSorting, setIsSorting] = useState(false);
 
     const { progress } = useSelector((state) => state.quickSort);
@@ -76,55 +78,131 @@ const QuickSortVisualizer = () => {
                 for (let index = 0; index < progress.length; index++) {
                     const element = progress[index];
                     setTree(cloneDeep(element));
-                    await delay(500);
+                    await delay(speed);
                 }
                 setIsSorting(false);
             }
         };
         render();
-    }, [progress]);
+    }, [progress, speed]);
+
+    const changeSpeed = (e) => {
+        reset();
+        setSpeed(e.target.value);
+    };
 
     return (
-        <div className="w-full">
-            <div className="mb-4 w-full flex justify-center">
-                <button
-                    disabled={isSorting}
-                    onClick={sort}
-                    className="h-10 w-40 shadow font-medium px-2 bg-green-600 text-white rounded disabled:bg-green-300"
-                >
-                    {isSorting ? "Sorting" : "Start"}
-                </button>
-                <button
-                    disabled={isSorting}
-                    onClick={reset}
-                    className="h-10 w-40 shadow font-medium px-2 bg-yellow-400 text-white rounded disabled:bg-yellow-200 ml-3"
-                >
-                    Reset
-                </button>
-            </div>
-            {tree && <RenderTree node={tree} />}
-            <div className="mt-10">
-                <h1 className="text-xl font-medium">Color Code</h1>
-                <div>
-                    <div className="flex justify-start items-center space-x-2">
-                        <div className="h-4 w-4 bg-red-500 rounded"></div>
-                        <div>Pivot Element</div>
+        <div className="w-full flex">
+            <div className="w-3/5">{tree && <RenderTree node={tree} />}</div>
+            <div className="w-2/5">
+                <div className="mb-10 w-full flex">
+                    <button
+                        disabled={isSorting}
+                        onClick={sort}
+                        className="h-10 w-40 shadow font-medium px-2 bg-green-600 text-white rounded disabled:bg-green-300"
+                    >
+                        {isSorting ? "Sorting" : "Start"}
+                    </button>
+                    <button
+                        disabled={isSorting}
+                        onClick={reset}
+                        className="h-10 w-40 shadow font-medium px-2 bg-yellow-400 text-white rounded disabled:bg-yellow-200 ml-3"
+                    >
+                        Reset
+                    </button>
+                </div>
+                <div className="mb-10">
+                    <h1 className="mb-4 text-xl font-medium">Color Code</h1>
+                    <div className="flex space-x-4">
+                        <div>
+                            <div className="flex justify-start items-center space-x-2">
+                                <div className="h-4 w-4 bg-red-500 rounded"></div>
+                                <div>Pivot Element</div>
+                            </div>
+                            <div className="flex justify-start items-center space-x-2">
+                                <div className="h-4 w-4 bg-yellow-500 rounded"></div>
+                                <div>Swapping Elements</div>
+                            </div>
+                            <div className="flex justify-start items-center space-x-2">
+                                <div className="h-4 w-4 bg-blue-300 rounded"></div>
+                                <div>Active Partition</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="flex justify-start items-center space-x-2">
+                                <div className="h-4 w-4 bg-pink-500 rounded"></div>
+                                <div>Partition Index</div>
+                            </div>
+                            <div className="flex justify-start items-center space-x-2">
+                                <div className="h-4 w-4 bg-purple-500 rounded"></div>
+                                <div>Current Index</div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="flex justify-start items-center space-x-2">
-                        <div className="h-4 w-4 bg-yellow-500 rounded"></div>
-                        <div>Swapping Elements</div>
+                </div>
+                <div className="mb-10">
+                    <h1 className="text-xl font-medium mb-2">Speed</h1>
+                    <div className="flex justify-start items-center">
+                        <input
+                            className="w-1/2"
+                            type="range"
+                            min="100"
+                            max="1000"
+                            step="10"
+                            value={speed}
+                            onChange={changeSpeed}
+                            disabled={isSorting}
+                        />
+                        <div className="ml-4 h-8 flex justify-center items-center px-2 border border-gray-800 rounded bg-green-50">
+                            {speed}
+                        </div>
                     </div>
-                    <div className="flex justify-start items-center space-x-2">
-                        <div className="h-4 w-4 bg-blue-300 rounded"></div>
-                        <div>Active Partition</div>
+                </div>
+                <div className="mb-10">
+                    <h1 className="text-xl font-medium mb-2">Explaination</h1>
+                    <div className="text-justify mb-8">
+                        <p>
+                            QuickSort is a Divide and Conquer algorithm. It
+                            picks an element as pivot and partitions the given
+                            array around the picked pivot.
+                        </p>
+                        <p>
+                            From
+                            <a
+                                href="https://www.geeksforgeeks.org/merge-sort/"
+                                className="ml-1 font-medium text-green-600"
+                            >
+                                geeksforgeeks
+                            </a>
+                        </p>
                     </div>
-                    <div className="flex justify-start items-center space-x-2">
-                        <div className="h-4 w-4 bg-pink-500 rounded"></div>
-                        <div>Partition Index</div>
+                    <h1 className="text-xl font-medium mb-2">Algorithm</h1>
+                    <div className="mb-4">
+                        <SampleCode algorithm="quick" />
                     </div>
-                    <div className="flex justify-start items-center space-x-2">
-                        <div className="h-4 w-4 bg-purple-500 rounded"></div>
-                        <div>Current Index</div>
+                    <h1 className="text-xl font-medium mb-2">
+                        Space and Time Complexity
+                    </h1>
+                    <div className="text-justify mb-4">
+                        <div className="flex items-center mb-2">
+                            <span className="block font-medium w-32">Time</span>
+                            <span className="font-mono italic">
+                                <span className="font-medium">Best case -</span>
+                                <span className="ml-2">O(nLogn)</span>
+                                <span className="font-medium ml-6">
+                                    Worst case -
+                                </span>
+                                <span className="ml-2">
+                                    O(n<sub>2</sub>)
+                                </span>
+                            </span>
+                        </div>
+                        <div className="flex items-center">
+                            <span className="block font-medium w-32">
+                                Space
+                            </span>
+                            <span className="font-mono italic">O(1)</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,7 +227,7 @@ const Block = ({
     } else if (isUnderActivePartition) {
         baseClassName += " bg-blue-300";
     } else {
-        baseClassName += "bg-gray-200";
+        baseClassName += " bg-gray-200";
     }
     return (
         <div className={baseClassName}>

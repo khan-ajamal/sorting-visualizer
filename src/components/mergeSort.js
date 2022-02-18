@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { cloneDeep, map } from "lodash-es";
 import { AnimatePresence } from "framer-motion";
 
-import SampleCode from "./codeBlocks";
 import Portal from "components/portal";
+import SampleCode from "components/codeBlocks";
 import { mergeSort } from "algorithms/merge-sort";
 import { delay, generateRandomArray, Node } from "utils";
 import { addProgress, resetProgress } from "features/treeSlice";

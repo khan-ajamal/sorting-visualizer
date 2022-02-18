@@ -62,3 +62,44 @@ const swap = (arr, idx, idy) => {
     arr[idx] = arr[idy];
     arr[idy] = temp;
 };
+
+export const codeBlock = {
+    python: `def partition(start, end, array):
+    pivot_index = start
+    pivot = array[pivot_index]
+    while start < end:
+        while start < len(array) and array[start] <= pivot:
+            start += 1
+        while array[end] > pivot:
+            end -= 1
+        if(start < end):
+            array[start], array[end] = array[end], array[start]
+    array[end], array[pivot_index] = array[pivot_index], array[end]
+    return end
+
+def quick_sort(start, end, array):
+    if (start < end):
+        p = partition(start, end, array)
+        quick_sort(start, p - 1, array)
+        quick_sort(p + 1, end, array)`,
+    javascript: `const partition = (arr, low, high) => {
+        let pivot = arr[high];
+
+        let i = (low - 1);
+        for (let j = low; j <= high - 1; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                swap(arr, i, j);
+            }
+        }
+        swap(arr, i + 1, high);
+        return (i + 1);
+    }
+    const quickSort = (arr, low, high) =? {
+        if (low < high) {
+            let pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }`,
+};

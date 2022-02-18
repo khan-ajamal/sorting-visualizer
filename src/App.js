@@ -11,7 +11,9 @@ const App = () => {
             <header className="px-8 h-12 flex justify-between items-center mb-4">
                 <div className="h-full flex items-center">
                     <a href="https://khan-ajamal.github.io/sorting-visualizer">
-                        <h1 className="text-lg">Sorting Visualizer</h1>
+                        <h1 className="text-2xl font-medium">
+                            Sorting Visualizer
+                        </h1>
                     </a>
                 </div>
                 <div className="h-full flex items-center space-x-4">

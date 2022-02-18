@@ -16,7 +16,6 @@ export const BubbleSort = () => {
     return (
         <>
             <button
-                id="mergeSort"
                 className="h-10 px-4 rounded bg-teal-600 font-medium text-white"
                 onClick={() => setView(true)}
             >

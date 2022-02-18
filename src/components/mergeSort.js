@@ -37,6 +37,7 @@ export const MergeSort = () => {
 
 const MergeSortVisualizer = () => {
     const [tree, setTree] = useState(null);
+    const [speed, setSpeed] = useState(250);
     const [isSorting, setIsSorting] = useState(false);
 
     const { progress } = useSelector((state) => state.tree);
@@ -76,51 +77,78 @@ const MergeSortVisualizer = () => {
                 for (let index = 0; index < progress.length; index++) {
                     const element = progress[index];
                     setTree(cloneDeep(element));
-                    await delay(500);
+                    await delay(speed);
                 }
                 setIsSorting(false);
             }
         };
         render();
-    }, [progress]);
+    }, [progress, speed]);
+
+    const changeSpeed = (e) => {
+        reset();
+        setSpeed(e.target.value);
+    };
 
     return (
-        <div className="w-full">
-            <div className="mb-4 w-full flex justify-center">
-                <button
-                    disabled={isSorting}
-                    onClick={sort}
-                    className="h-10 w-40 shadow font-medium px-2 bg-green-600 text-white rounded disabled:bg-green-300"
-                >
-                    {isSorting ? "Sorting" : "Start"}
-                </button>
-                <button
-                    disabled={isSorting}
-                    onClick={reset}
-                    className="h-10 w-40 shadow font-medium px-2 bg-yellow-400 text-white rounded disabled:bg-yellow-200 ml-3"
-                >
-                    Reset
-                </button>
+        <div className="w-full flex">
+            <div className="w-3/5">
+                {tree && (
+                    <RenderTree
+                        data={tree.data}
+                        left={tree.left}
+                        right={tree.right}
+                        isSorted={tree.isSorted}
+                        mid={tree.mid}
+                    />
+                )}
             </div>
-            {tree && (
-                <RenderTree
-                    data={tree.data}
-                    left={tree.left}
-                    right={tree.right}
-                    isSorted={tree.isSorted}
-                    mid={tree.mid}
-                />
-            )}
-            <div className="mt-10">
-                <h1 className="text-xl font-medium">Color Code</h1>
+            <div className="w-2/5">
+                <div className="mb-8 w-full flex">
+                    <button
+                        disabled={isSorting}
+                        onClick={sort}
+                        className="h-10 w-40 shadow font-medium px-2 bg-green-600 text-white rounded disabled:bg-green-300"
+                    >
+                        {isSorting ? "Sorting" : "Start"}
+                    </button>
+                    <button
+                        disabled={isSorting}
+                        onClick={reset}
+                        className="h-10 w-40 shadow font-medium px-2 bg-yellow-400 text-white rounded disabled:bg-yellow-200 ml-3"
+                    >
+                        Reset
+                    </button>
+                </div>
                 <div>
-                    <div className="flex justify-start items-center space-x-2">
-                        <div className="h-4 w-4 bg-red-500 rounded"></div>
-                        <div>Middle Element</div>
+                    <h1 className="text-xl font-medium">Color Code</h1>
+                    <div className="flex space-x-4">
+                        <div className="flex justify-start items-center space-x-2">
+                            <div className="h-4 w-4 bg-red-500 rounded"></div>
+                            <div>Middle Element</div>
+                        </div>
+                        <div className="flex justify-start items-center space-x-2">
+                            <div className="h-4 w-4 bg-green-500 rounded"></div>
+                            <div>Sorted Element</div>
+                        </div>
                     </div>
-                    <div className="flex justify-start items-center space-x-2">
-                        <div className="h-4 w-4 bg-green-500 rounded"></div>
-                        <div>Sorted Element</div>
+                </div>
+                <div className="mt-10">
+                    <h1 className="text-xl font-medium mb-2">Speed</h1>
+                    <div className="flex justify-start items-center">
+                        <input
+                            className="w-1/2"
+                            type="range"
+                            min="100"
+                            max="1000"
+                            step="10"
+                            value={speed}
+                            onChange={changeSpeed}
+                            disabled={isSorting}
+                        />
+                        <div className="ml-4 h-8 flex justify-center items-center px-2 border border-gray-800 rounded bg-green-50">
+                            {speed}
+                        </div>
                     </div>
                 </div>
             </div>

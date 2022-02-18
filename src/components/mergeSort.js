@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { cloneDeep, map } from "lodash-es";
 import { AnimatePresence } from "framer-motion";
 
+import SampleCode from "./codeBlocks";
 import Portal from "components/portal";
 import { mergeSort } from "algorithms/merge-sort";
 import { delay, generateRandomArray, Node } from "utils";
@@ -104,7 +105,7 @@ const MergeSortVisualizer = () => {
                 )}
             </div>
             <div className="w-2/5">
-                <div className="mb-8 w-full flex">
+                <div className="mb-10 w-full flex">
                     <button
                         disabled={isSorting}
                         onClick={sort}
@@ -120,7 +121,7 @@ const MergeSortVisualizer = () => {
                         Reset
                     </button>
                 </div>
-                <div>
+                <div className="mb-10">
                     <h1 className="text-xl font-medium">Color Code</h1>
                     <div className="flex space-x-4">
                         <div className="flex justify-start items-center space-x-2">
@@ -133,7 +134,7 @@ const MergeSortVisualizer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="mt-10">
+                <div className="mb-10">
                     <h1 className="text-xl font-medium mb-2">Speed</h1>
                     <div className="flex justify-start items-center">
                         <input
@@ -148,6 +149,49 @@ const MergeSortVisualizer = () => {
                         />
                         <div className="ml-4 h-8 flex justify-center items-center px-2 border border-gray-800 rounded bg-green-50">
                             {speed}
+                        </div>
+                    </div>
+                </div>
+                <div className="mb-10">
+                    <h1 className="text-xl font-medium mb-2">Explaination</h1>
+                    <div className="text-justify mb-8">
+                        <p>
+                            Merge Sort is a Divide and Conquer algorithm. It
+                            divides the input array into two halves, calls
+                            itself for the two halves, and then merges the two
+                            sorted halves. The merge() function is used for
+                            merging two halves. The merge(arr, l, m, r) is a key
+                            process that assumes that arr[l..m] and arr[m+1..r]
+                            are sorted and merges the two sorted sub-arrays into
+                            one.
+                        </p>
+                        <p>
+                            From
+                            <a
+                                href="https://www.geeksforgeeks.org/merge-sort/"
+                                className="ml-1 font-medium text-green-600"
+                            >
+                                geeksforgeeks
+                            </a>
+                        </p>
+                    </div>
+                    <h1 className="text-xl font-medium mb-2">Algorithm</h1>
+                    <div className="mb-4">
+                        <SampleCode algorithm="merge" />
+                    </div>
+                    <h1 className="text-xl font-medium mb-2">
+                        Space and Time Complexity
+                    </h1>
+                    <div className="text-justify mb-4">
+                        <div className="flex items-center mb-2">
+                            <span className="block font-medium w-32">Time</span>
+                            <span className="font-mono italic">O(nLogn)</span>
+                        </div>
+                        <div className="flex items-center">
+                            <span className="block font-medium w-32">
+                                Space
+                            </span>
+                            <span className="font-mono italic">O(n)</span>
                         </div>
                     </div>
                 </div>

@@ -54,3 +54,86 @@ const merge = (left, right) => {
 
     return [...arr, ...left, ...right];
 };
+
+export const codeBlock = {
+    python: `def mergeSort(arr):
+    if len(arr) > 1:
+        # Finding the mid of the array
+        mid = len(arr)//2
+        # Dividing the array elements
+        L = arr[:mid]
+        # into 2 halves
+        R = arr[mid:]
+        # Sorting the first half
+        mergeSort(L)
+        # Sorting the second half
+        mergeSort(R)
+        i = j = k = 0
+        # Copy data to temp arrays L[] and R[]
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+        # Checking if any element was left
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1`,
+    javascript: `const merge = (arr, l, m, r) => {
+        let n1 = m - l + 1;
+        let n2 = r - m;
+
+        let L = new Array(n1);
+        let R = new Array(n2);
+
+        for (let i = 0; i < n1; i++)
+            L[i] = arr[l + i];
+        for (let j = 0; j < n2; j++)
+            R[j] = arr[m + 1 + j];
+
+        var i = 0;
+        var j = 0;
+        var k = l;
+
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                i++;
+            }
+            else {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+
+    const mergeSort = (arr, l, r) => {
+        if(l >= r){
+            return;
+        }
+        let m = l + parseInt((r-l)/2);
+        mergeSort(arr, l, m);
+        mergeSort(arr, m+1, r);
+        merge(arr, l, m, r);
+    }`,
+};

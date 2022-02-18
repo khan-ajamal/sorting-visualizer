@@ -2,12 +2,15 @@ import { useState } from "react";
 import { CodeBlock, solarizedDark } from "react-code-blocks";
 
 import { codeBlock as bubble } from "algorithms/bubble-sort";
+import { codeBlock as merge } from "algorithms/merge-sort";
 
 const SampleCode = ({ algorithm }) => {
     const [language, setLanguage] = useState("python");
     let code = bubble;
     if (algorithm === "bubble") {
         code = bubble;
+    } else if (algorithm === "merge") {
+        code = merge;
     }
     const onLanguageChange = (e) => {
         setLanguage(e.target.value);

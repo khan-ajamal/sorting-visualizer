@@ -167,7 +167,7 @@ const QuickSortVisualizer = () => {
                             array around the picked pivot.
                         </p>
                         <p>
-                            From
+                            Source
                             <a
                                 href="https://www.geeksforgeeks.org/merge-sort/"
                                 className="ml-1 font-medium text-green-600"

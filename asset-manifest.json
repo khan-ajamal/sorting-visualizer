@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/sorting-visualizer/static/css/main.aa000245.css",
-    "main.js": "/sorting-visualizer/static/js/main.9d214bc6.js",
+    "main.js": "/sorting-visualizer/static/js/main.5b0aac72.js",
     "react-syntax-highlighter/refractor-core-import.js": "/sorting-visualizer/static/js/react-syntax-highlighter/refractor-core-import.005bb18c.chunk.js",
     "react-syntax-highlighter_languages_refractor_abap.js": "/sorting-visualizer/static/js/react-syntax-highlighter_languages_refractor_abap.12931e6f.chunk.js",
     "react-syntax-highlighter_languages_refractor_actionscript.js": "/sorting-visualizer/static/js/react-syntax-highlighter_languages_refractor_actionscript.046b3e95.chunk.js",
@@ -158,7 +158,7 @@
     "static/media/github.svg": "/sorting-visualizer/static/media/github.dd3e761d5b822e59c5fe8210cde05554.svg",
     "static/media/home.svg": "/sorting-visualizer/static/media/home.2135eb389c21f4174303666849300bd9.svg",
     "main.aa000245.css.map": "/sorting-visualizer/static/css/main.aa000245.css.map",
-    "main.9d214bc6.js.map": "/sorting-visualizer/static/js/main.9d214bc6.js.map",
+    "main.5b0aac72.js.map": "/sorting-visualizer/static/js/main.5b0aac72.js.map",
     "refractor-core-import.005bb18c.chunk.js.map": "/sorting-visualizer/static/js/react-syntax-highlighter/refractor-core-import.005bb18c.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abap.12931e6f.chunk.js.map": "/sorting-visualizer/static/js/react-syntax-highlighter_languages_refractor_abap.12931e6f.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_actionscript.046b3e95.chunk.js.map": "/sorting-visualizer/static/js/react-syntax-highlighter_languages_refractor_actionscript.046b3e95.chunk.js.map",
@@ -314,6 +314,6 @@
   },
   "entrypoints": [
     "static/css/main.aa000245.css",
-    "static/js/main.9d214bc6.js"
+    "static/js/main.5b0aac72.js"
   ]
 }

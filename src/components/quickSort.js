@@ -141,7 +141,7 @@ const QuickSortVisualizer = () => {
                     </div>
                 </div>
                 <div className="mb-10">
-                    <h1 className="text-xl font-medium mb-2">Speed</h1>
+                    <h1 className="text-xl font-medium mb-2">Duration</h1>
                     <div className="flex justify-start items-center">
                         <input
                             className="w-1/2"
@@ -154,7 +154,7 @@ const QuickSortVisualizer = () => {
                             disabled={isSorting}
                         />
                         <div className="ml-4 h-8 flex justify-center items-center px-2 border border-gray-800 rounded bg-green-50">
-                            {speed}
+                            {speed} ms
                         </div>
                     </div>
                 </div>
